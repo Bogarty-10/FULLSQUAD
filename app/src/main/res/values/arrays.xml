@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="localidades">
+        <item>Madrid</item>
+        <item>Alcorcón</item>
+        <item>Móstoles</item>
+        <item>Leganés</item>
+        <item>Getafe</item>
+        <item>Fuenlabrada</item>
+        <item>Parla</item>
+        <item>Majadahonda</item>
+        <item>Pozuelo de Alarcón</item>
+    </string-array>
+    <string-array name="posiciones">
+        <item>Portero</item>
+        <item>Defensa</item>
+        <item>Mediocentro</item>
+        <item>Delantero</item>
+    </string-array>
+
+    <string-array name="dorsales">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+</resources>
