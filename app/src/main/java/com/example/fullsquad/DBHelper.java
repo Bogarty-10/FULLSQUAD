@@ -25,11 +25,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE eventos(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "titulo TEXT, " +
-                "fecha TEXT, " +
-                "hora TEXT, " +
-                "campo TEXT, " +
-                "descripcion TEXT)");
+                "nameEvent TEXT, " +
+                "fechEvent TEXT, " +
+                "localizacionEvent TEXT, " +
+                "horaEvent TEXT)"
+        );
     }
 
     @Override
@@ -62,21 +62,20 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return resultado != -1;
     }
-    public boolean insertarEvento(String titulo,
-                                  String fecha,
-                                  String hora,
-                                  String campo,
-                                  String descripcion) {
+    public boolean insertarEvento(String nameEvent,
+                                  String fechEvent,
+                                  String localizacionEvent,
+                                  String horaEvent)
+            {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
 
-        values.put("titulo", titulo);
-        values.put("fecha", fecha);
-        values.put("hora", hora);
-        values.put("campo", campo);
-        values.put("descripcion", descripcion);
+        values.put("nameEvent", nameEvent);
+        values.put("fechEvent", fechEvent);
+        values.put("localizacionEvent", localizacionEvent);
+        values.put("horaEvent", horaEvent);
 
         long resultado = db.insert(
                 "eventos",
