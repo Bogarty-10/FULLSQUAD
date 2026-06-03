@@ -32,7 +32,7 @@ public class NewplayerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_newplayer);
 
 
-        etCorreo = findViewById(R.id.editTMailPlayer);
+        etCorreo = findViewById(R.id.editTCorreoPlayer);
         etNombre = findViewById(R.id.editTNombrePlayer);
         etFechaNacimiento = findViewById(R.id.editTFechPlayer);
 

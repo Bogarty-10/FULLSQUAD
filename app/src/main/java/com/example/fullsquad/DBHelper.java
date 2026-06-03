@@ -16,22 +16,31 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(
                 "CREATE TABLE jugadores (" +
                         "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        "correo TEXT," +
                         "nombre TEXT," +
-                        "apellidos TEXT," +
+                        "fecha_nacimiento TEXT," +
                         "dorsal INTEGER," +
                         "posicion TEXT)"
         );
+
+        db.execSQL("CREATE TABLE eventos(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "titulo TEXT, " +
+                "fecha TEXT, " +
+                "hora TEXT, " +
+                "campo TEXT, " +
+                "descripcion TEXT)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS jugadores");
-
+        db.execSQL("DROP TABLE IF EXISTS eventos");
         onCreate(db);
     }
     public boolean insertarJugador(String correo,
                                    String nombre,
-                                   String fechaNacimiento,
+                                   String fech_nacimiento,
                                    int dorsal,
                                    String posicion) {
 
@@ -41,12 +50,36 @@ public class DBHelper extends SQLiteOpenHelper {
 
         values.put("correo", correo);
         values.put("nombre", nombre);
-        values.put("fecha_nacimiento", fechaNacimiento);
+        values.put("fecha_nacimiento", fech_nacimiento);
         values.put("dorsal", dorsal);
         values.put("posicion", posicion);
 
         long resultado = db.insert(
                 "jugadores",
+                null,
+                values
+        );
+
+        return resultado != -1;
+    }
+    public boolean insertarEvento(String titulo,
+                                  String fecha,
+                                  String hora,
+                                  String campo,
+                                  String descripcion) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put("titulo", titulo);
+        values.put("fecha", fecha);
+        values.put("hora", hora);
+        values.put("campo", campo);
+        values.put("descripcion", descripcion);
+
+        long resultado = db.insert(
+                "eventos",
                 null,
                 values
         );
