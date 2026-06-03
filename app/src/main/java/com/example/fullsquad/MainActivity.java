@@ -1,19 +1,22 @@
 package com.example.fullsquad;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
     ImageButton btnMenu;
+
+    private Button btnNewJugador;
+
+    private Button btnNewEvento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +25,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btnMenu = findViewById(R.id.btnMenu);
+
+        btnNewJugador = findViewById(R.id.btnAddJugador);
+
+        btnNewEvento = findViewById(R.id.btnAddEvent);
+
+        btnNewJugador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, NewplayerActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnNewEvento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, NeweventoActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btnMenu.setOnClickListener(new View.OnClickListener() {
             @Override

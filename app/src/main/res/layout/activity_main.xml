@@ -166,7 +166,7 @@
             <!-- GAMES & EVENTS -->
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardGames"
+                android:id="@+id/cardJugadores"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -205,12 +205,12 @@
                             android:textSize="16sp" />
 
                         <Button
-                            android:id="@+id/btnAddGame"
+                            android:id="@+id/btnAddJugador"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
                             android:layout_marginTop="16dp"
-                            android:text="Añadir lista" />
+                            android:text="Añadir Jugador" />
 
                     </LinearLayout>
 
@@ -221,7 +221,7 @@
             <!-- INVITE PLAYERS -->
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardPlayers"
+                android:id="@+id/cardCalendar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="20dp"
@@ -259,7 +259,7 @@
                             android:textSize="16sp" />
 
                         <Button
-                            android:id="@+id/btnInvite"
+                            android:id="@+id/btnAddEvent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"

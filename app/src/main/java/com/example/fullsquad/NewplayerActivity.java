@@ -1,5 +1,6 @@
 package com.example.fullsquad;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -20,10 +21,17 @@ public class NewplayerActivity extends AppCompatActivity {
 
     private Button btnGuardar;
 
+    private Button btnCancelarPlayer;
+
 
     private DBHelper dbHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_newplayer);
+
+
         etCorreo = findViewById(R.id.editTMailPlayer);
         etNombre = findViewById(R.id.editTNombrePlayer);
         etFechaNacimiento = findViewById(R.id.editTFechPlayer);
@@ -38,9 +46,19 @@ public class NewplayerActivity extends AppCompatActivity {
         spPosicion = findViewById(R.id.spPosicion);
 
         dbHelper = new DBHelper(this);
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_newplayer);
+
+
+        btnCancelarPlayer = findViewById(R.id.btnCancelarPlayer);
+
+        btnCancelarPlayer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (NewplayerActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
 
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
