@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -59,6 +60,17 @@ public class NeweventoActivity extends AppCompatActivity {
                 String localizacion = etLocalizacion.getText().toString();
                 String hora = etHora.getText().toString();
 
+                if (nameEvent.isEmpty() ||fechEvent.isEmpty() || localizacion.isEmpty() ||hora.isEmpty()) {
+
+                    Toast.makeText(
+                            NeweventoActivity.this,
+                            "Debe rellenar todos los campos",
+                            Toast.LENGTH_SHORT
+                    ).show();
+
+                    return;
+                }
+
                 boolean insertado =
                         dbHelper.insertarEvento(
                                 nameEvent,
@@ -66,6 +78,16 @@ public class NeweventoActivity extends AppCompatActivity {
                                 localizacion,
                                 hora
                         );
+                if(insertado){
+                    Toast.makeText(NeweventoActivity.this, "Evento añadido correctamente", Toast.LENGTH_SHORT).show();
+                    //Vuelvo al main cuando guardo el dato
+                    Intent intent = new Intent(NeweventoActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+
+                }else{
+                    Toast.makeText(NeweventoActivity.this, "Error al añadir evento", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

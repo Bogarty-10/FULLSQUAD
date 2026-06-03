@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -63,15 +64,30 @@ public class NewplayerActivity extends AppCompatActivity {
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String correo = etCorreo.getText().toString();
-                String nombre = etNombre.getText().toString();
-                String fecha = etFechaNacimiento.getText().toString();
+                //valido campos antes de guardar
+                String correo = etCorreo.getText().toString().trim();
+                String nombre = etNombre.getText().toString().trim();
+                String fecha = etFechaNacimiento.getText().toString().trim();
+                if (correo.isEmpty() || nombre.isEmpty() || fecha.isEmpty()) {
+
+                    Toast.makeText(
+                            NewplayerActivity.this,
+                            "Debe rellenar todos los campos",
+                            Toast.LENGTH_SHORT
+                    ).show();
+
+                    return;
+                }
 
                 int dorsal = Integer.parseInt(
                         spDorsal.getSelectedItem().toString()
                 );
                 String posicion =
                         spPosicion.getSelectedItem().toString();
+
+
+
+
 
                 boolean insertado =
                         dbHelper.insertarJugador(
@@ -81,8 +97,20 @@ public class NewplayerActivity extends AppCompatActivity {
                                 dorsal,
                                 posicion
                         );
+
+                if(insertado){
+                    Toast.makeText(NewplayerActivity.this, "Jugador añadido correctamente", Toast.LENGTH_SHORT).show();
+                    //vuelvo al Main una vez que he añadido el jugador
+                    Intent intent = new Intent(NewplayerActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else{
+                    Toast.makeText(NewplayerActivity.this, "Error al añadir jugador", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
+
         ArrayAdapter<CharSequence> adapterDorsal =
                 ArrayAdapter.createFromResource(
                         this,
