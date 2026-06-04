@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FULLSQUAD">
         <activity
+            android:name=".JugadoresActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PartidoActivity"
+            android:exported="false" />
+        <activity
             android:name=".NewplayerActivity"
             android:exported="false" />
         <activity

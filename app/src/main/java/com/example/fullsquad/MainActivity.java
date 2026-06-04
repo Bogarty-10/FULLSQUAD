@@ -9,6 +9,9 @@ import android.widget.PopupMenu;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
     private Button btnNewJugador;
 
     private Button btnNewEvento;
+
+    private CardView cardJugadores;
+
+    private CardView cardCalendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +36,26 @@ public class MainActivity extends AppCompatActivity {
         btnNewJugador = findViewById(R.id.btnAddJugador);
 
         btnNewEvento = findViewById(R.id.btnAddEvent);
+
+        cardJugadores = findViewById(R.id.cardJugadores);
+
+        cardCalendar = findViewById(R.id.cardCalendar);
+
+        cardJugadores.setOnClickListener(new View.OnClickListener() {
+            @Override
+           public void onClick(View v) {
+               Intent intent = new Intent(MainActivity.this, JugadoresActivity.class);
+                startActivity(intent);
+            }
+        });
+
+       cardCalendar.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent = new Intent(MainActivity.this, PartidoActivity.class);
+               startActivity(intent);
+           }
+       });
 
         btnNewJugador.setOnClickListener(new View.OnClickListener() {
             @Override
