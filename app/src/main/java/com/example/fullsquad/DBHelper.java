@@ -148,7 +148,4 @@ public class DBHelper extends SQLiteOpenHelper {
         insertarJugador("ivan@fullsquad.com", "Iván Romero", "18/05/2001", 2, "Defensa");
         insertarJugador("daniel@fullsquad.com", "Daniel Vega", "09/07/2000", 12, "Portero");
     }
-
-
-
 }

@@ -51,14 +51,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Intent para pasar a la lista de partidos
-        //cardCalendar.setOnClickListener(new View.OnClickListener() {
-          //  @Override
-            //public void onClick(View v) {
-             //   Intent intent = new Intent(MainActivity.this, EventosActivity.class);
-              //  startActivity(intent);
-          //  }
-        //});
 
         btnNewJugador.setOnClickListener(new View.OnClickListener() {
             @Override
