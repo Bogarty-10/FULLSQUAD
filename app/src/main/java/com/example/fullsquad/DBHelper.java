@@ -10,7 +10,8 @@ import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "fullsquad.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
+
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -33,13 +34,59 @@ public class DBHelper extends SQLiteOpenHelper {
                 "localizacionEvent TEXT, " +
                 "horaEvent TEXT)"
         );
+
+        db.execSQL(
+                "CREATE TABLE usuarios (" +
+                        "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        "correo TEXT," +
+                        "password TEXT)"
+        );
     }
+
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS jugadores");
         db.execSQL("DROP TABLE IF EXISTS eventos");
+        db.execSQL("DROP TABLE IF EXISTS usuarios");
         onCreate(db);
+    }
+
+    // Crear usuario de prueba
+    public void insertarUsuarioPrueba() {
+        insertarUsuario("test@fullsquad.com", "1234");
+    }
+
+    // Guardar usuario
+    public boolean insertarUsuario(String correo, String password) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("correo", correo);
+        values.put("password", password);
+
+        long resultado = db.insert("usuarios", null, values);
+
+        return resultado != -1;
+    }
+
+    // Comprobar login
+    public boolean comprobarUsuario(String correo, String password) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM usuarios WHERE correo = ? AND password = ?",
+                new String[]{correo, password}
+        );
+
+        boolean existe = cursor.getCount() > 0;
+
+        cursor.close();
+
+        return existe;
     }
     public boolean insertarJugador(String correo,
                                    String nombre,
@@ -184,8 +231,27 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return lista;
     }
+    public int contarPartidos() {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM eventos", null);
+
+        int cantidad = 0;
+
+        if (cursor.moveToFirst()) {
+            cantidad = cursor.getInt(0);
+        }
+
+        cursor.close();
+
+        return cantidad;
+    }
     // Insertar partidos de prueba
     public void insertarPartidosPrueba() {
+        if (contarPartidos() > 0) {
+            return;
+        }
 
         insertarEvento(
                 "FULLSQUAD vs Los Leones",

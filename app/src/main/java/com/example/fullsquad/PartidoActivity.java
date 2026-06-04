@@ -1,6 +1,8 @@
 package com.example.fullsquad;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,5 +57,17 @@ public class PartidoActivity extends AppCompatActivity {
             );
 
             recyclerPartidos.setAdapter(adapter);
+
+            // Botón volver
+            Button btnVolver = findViewById(R.id.btnVolver);
+
+            btnVolver.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    finish();
+
+                }
+            });
         }
     }
