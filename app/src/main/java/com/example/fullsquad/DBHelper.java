@@ -55,7 +55,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     // Crear usuario de prueba
     public void insertarUsuarioPrueba() {
-        insertarUsuario("test@fullsquad.com", "1234");
+        insertarUsuario("pruebaDAM", "1234");
     }
 
     // Guardar usuario

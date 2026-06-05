@@ -45,6 +45,9 @@ public class LoginActivity extends AppCompatActivity {
                 boolean existe = dbHelper.comprobarUsuario(correo, password);
 
                 if (existe) {
+                    Toast.makeText(LoginActivity.this,
+                            "Inicio de sesión correcto",
+                            Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 } else {

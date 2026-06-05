@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -98,7 +99,29 @@ public class MainActivity extends AppCompatActivity {
                 popupMenu.getMenu().add("Configuración");
                 popupMenu.getMenu().add("Cerrar sesión");
 
+                popupMenu.setOnMenuItemClickListener(item -> {
+
+                    if (item.getTitle().equals("Cerrar sesión")) {
+
+                        Toast.makeText(MainActivity.this,
+                                "Sesión cerrada correctamente",
+                                Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+
+                        finish();
+
+                        return true;
+                    }
+
+                    return false;
+                });
+
                 popupMenu.show();
+
+
             }
         });
     }
