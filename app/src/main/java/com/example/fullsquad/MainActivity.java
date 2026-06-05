@@ -1,11 +1,13 @@
 package com.example.fullsquad;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     private CardView cardCalendar;
 
+    private TextView tvNombreEquipo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +44,16 @@ public class MainActivity extends AppCompatActivity {
         cardJugadores = findViewById(R.id.cardJugadores);
 
         cardCalendar = findViewById(R.id.cardCalendar);
+
+        tvNombreEquipo = findViewById(R.id.txtEquipo);
+
+        // Obtener datos guardados
+        SharedPreferences prefs = getSharedPreferences("FULLSQUAD", MODE_PRIVATE);
+
+        String nombreEquipo = prefs.getString("nombre_equipo", "FULLSQUAD");
+
+        // Mostrar datos en el header
+        tvNombreEquipo.setText(nombreEquipo);
 
         cardJugadores.setOnClickListener(new View.OnClickListener() {
             @Override
