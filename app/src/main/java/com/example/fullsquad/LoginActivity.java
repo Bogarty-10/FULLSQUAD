@@ -24,23 +24,16 @@ public class LoginActivity extends AppCompatActivity {
 
         Button btnLogin = findViewById(R.id.buttonEntrar);
 
-        EditText editCorreo = findViewById(R.id.eTNombre);
-        EditText editPassword = findViewById(R.id.eTPass);
+        EditText etUsuario = findViewById(R.id.eTNombre);
+        EditText etPassword = findViewById(R.id.eTPass);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String correo = editCorreo.getText().toString().trim();
-                String password = editPassword.getText().toString().trim();
+                String correo = etUsuario.getText().toString().trim();
+                String password = etPassword.getText().toString().trim();
 
                 DBHelper dbHelper = new DBHelper(LoginActivity.this);
-
-                dbHelper.insertarUsuarioPrueba();
-
-                if (correo.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Rellena todos los campos", Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
                 boolean existe = dbHelper.comprobarUsuario(correo, password);
 
