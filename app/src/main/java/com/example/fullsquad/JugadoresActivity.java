@@ -1,5 +1,6 @@
 package com.example.fullsquad;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
@@ -37,16 +40,42 @@ public class JugadoresActivity extends AppCompatActivity {
         recyclerJugadores.setLayoutManager(new LinearLayoutManager(this));
         recyclerJugadores.setAdapter(adapter);
 
-        // Botón volver
-        Button btnVolver = findViewById(R.id.btnVolver);
+        BottomNavigationView bottomNavigation = findViewById(R.id.bottomNavigation);
 
-        btnVolver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        bottomNavigation.setSelectedItemId(R.id.nav_players);
 
+        bottomNavigation.setOnItemSelectedListener(item -> {
+
+            if (item.getItemId() == R.id.nav_home) {
+
+                startActivity(
+                        new Intent(
+                                JugadoresActivity.this,
+                                MainActivity.class
+                        )
+                );
                 finish();
-
+                return true;
             }
+
+            if (item.getItemId() == R.id.nav_players) {
+                return true;
+            }
+
+            if (item.getItemId() == R.id.nav_games) {
+
+                startActivity(
+                        new Intent(
+                                JugadoresActivity.this,
+                                PartidoActivity.class
+                        )
+                );
+                finish();
+                return true;
+            }
+
+            return false;
         });
+
     }
 }

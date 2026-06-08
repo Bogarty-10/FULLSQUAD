@@ -14,6 +14,8 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
@@ -123,6 +125,42 @@ public class MainActivity extends AppCompatActivity {
 
 
             }
+        });
+        BottomNavigationView bottomNavigation = findViewById(R.id.bottomNavigation);
+
+        bottomNavigation.setSelectedItemId(R.id.nav_home);
+
+        bottomNavigation.setOnItemSelectedListener(item -> {
+
+            if (item.getItemId() == R.id.nav_home) {
+
+                startActivity(
+                        new Intent(
+                                MainActivity.this,
+                                MainActivity.class
+                        )
+                );
+                finish();
+                return true;
+            }
+
+            if (item.getItemId() == R.id.nav_players) {
+                return true;
+            }
+
+            if (item.getItemId() == R.id.nav_games) {
+
+                startActivity(
+                        new Intent(
+                                MainActivity.this,
+                                PartidoActivity.class
+                        )
+                );
+                finish();
+                return true;
+            }
+
+            return false;
         });
     }
 }
