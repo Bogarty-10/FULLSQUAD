@@ -3,7 +3,9 @@ package com.example.fullsquad;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,9 +15,13 @@ public class JugadorAdapter extends RecyclerView.Adapter<JugadorAdapter.JugadorV
 
     private ArrayList<Jugador> listaJugadores;
 
-    public JugadorAdapter(ArrayList<Jugador> listaJugadores) {
+    private DBHelper dbHelper;
+    public JugadorAdapter(ArrayList<Jugador> listaJugadores, DBHelper dbHelper) {
         this.listaJugadores = listaJugadores;
+        this.dbHelper = dbHelper;
     }
+
+
 
     public static class JugadorViewHolder extends RecyclerView.ViewHolder {
 
@@ -23,12 +29,16 @@ public class JugadorAdapter extends RecyclerView.Adapter<JugadorAdapter.JugadorV
         TextView tvInfoJugador;
         TextView tvCorreoJugador;
 
+        ImageButton btnEliminarJugador;
+
         public JugadorViewHolder(View itemView) {
             super(itemView);
 
             tvNombreJugador = itemView.findViewById(R.id.tvNombreJugador);
             tvInfoJugador = itemView.findViewById(R.id.tvInfoJugador);
             tvCorreoJugador = itemView.findViewById(R.id.tvCorreoJugador);
+
+            btnEliminarJugador = itemView.findViewById(R.id.btnEliminarJugador);
         }
     }
 
@@ -53,7 +63,34 @@ public class JugadorAdapter extends RecyclerView.Adapter<JugadorAdapter.JugadorV
         );
 
         holder.tvCorreoJugador.setText(jugador.getCorreo());
+
+        holder.btnEliminarJugador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                int posicionActual = holder.getAdapterPosition();
+
+                if (posicionActual != RecyclerView.NO_POSITION) {
+
+                    Jugador jugadorEliminar = listaJugadores.get(posicionActual);
+
+                    dbHelper.eliminarJugador(jugadorEliminar.getCorreo());
+
+                    listaJugadores.remove(posicionActual);
+
+                    notifyItemRemoved(posicionActual);
+
+                    Toast.makeText(
+                            view.getContext(),
+                            "Jugador eliminado",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                }
+            }
+        });
     }
+
+
 
     @Override
     public int getItemCount() {

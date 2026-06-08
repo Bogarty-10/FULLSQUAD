@@ -80,18 +80,18 @@ public class PartidoActivity extends AppCompatActivity {
             }
 
             if (item.getItemId() == R.id.nav_players) {
+                startActivity(
+                        new Intent(
+                                PartidoActivity.this,
+                                JugadoresActivity.class
+                        )
+                );
+                finish();
                 return true;
             }
 
             if (item.getItemId() == R.id.nav_games) {
 
-                startActivity(
-                        new Intent(
-                                PartidoActivity.this,
-                                PartidoActivity.class
-                        )
-                );
-                finish();
                 return true;
             }
 

@@ -32,6 +32,13 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView tvNombreEquipo;
 
+    private TextView tvNombrePartido;
+    private TextView tvFechaPartido;
+    private TextView tvHoraPartido;
+    private TextView tvLugarPartido;
+
+    private DBHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +56,41 @@ public class MainActivity extends AppCompatActivity {
         cardCalendar = findViewById(R.id.cardCalendar);
 
         tvNombreEquipo = findViewById(R.id.txtEquipo);
+
+        tvNombrePartido = findViewById(R.id.tvRivales);
+
+        tvFechaPartido = findViewById(R.id.tvFechaPartidoMain);
+
+        tvHoraPartido = findViewById(R.id.tvHoraPartidoMain);
+
+        tvLugarPartido = findViewById(R.id.tvLugarPartidoMain);
+
+        CardView cardProximoPartido = findViewById(R.id.cardNextMatch);
+
+        cardProximoPartido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, DetallePartidoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        dbHelper = new DBHelper(this);
+
+        Partido ultimoPartido = dbHelper.obtenerUltimoPartido();
+
+        if (ultimoPartido != null) {
+
+            tvNombrePartido.setText(ultimoPartido.getNombreEvent());
+            tvFechaPartido.setText("Fecha: " + ultimoPartido.getFechEvent());
+            tvHoraPartido.setText("Hora: " + ultimoPartido.getHoraEvent());
+            tvLugarPartido.setText("Lugar: " + ultimoPartido.getLocalizacionEvent());
+
+        } else {
+
+            tvNombrePartido.setText("No hay partidos creados");
+        }
 
         // Obtener datos guardados
         SharedPreferences prefs = getSharedPreferences("FULLSQUAD", MODE_PRIVATE);
@@ -134,17 +176,17 @@ public class MainActivity extends AppCompatActivity {
 
             if (item.getItemId() == R.id.nav_home) {
 
-                startActivity(
-                        new Intent(
-                                MainActivity.this,
-                                MainActivity.class
-                        )
-                );
-                finish();
                 return true;
             }
 
             if (item.getItemId() == R.id.nav_players) {
+                startActivity(
+                        new Intent(
+                                MainActivity.this,
+                                JugadoresActivity.class
+                        )
+                );
+                finish();
                 return true;
             }
 

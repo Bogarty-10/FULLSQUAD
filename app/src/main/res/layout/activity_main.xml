@@ -120,6 +120,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvRivales"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -128,17 +129,20 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvFechaPartidoMain"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
                             android:text="📅 12 Junio 2026" />
 
                         <TextView
+                            android:id="@+id/tvHoraPartidoMain"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="⏰ 11:00" />
 
                         <TextView
+                            android:id="@+id/tvLugarPartidoMain"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="📍 Campo Municipal Vista Alegre" />

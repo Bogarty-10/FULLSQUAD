@@ -323,4 +323,58 @@ public class DBHelper extends SQLiteOpenHelper {
                 "12:00"
         );
     }
+    // Obtener último partido creado
+    public Partido obtenerUltimoPartido() {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM eventos ORDER BY id DESC LIMIT 1",
+                null
+        );
+
+        Partido partido = null;
+
+        if (cursor.moveToFirst()) {
+
+            String nombreEvent = cursor.getString(
+                    cursor.getColumnIndexOrThrow("nameEvent")
+            );
+
+            String fechEvent = cursor.getString(
+                    cursor.getColumnIndexOrThrow("fechEvent")
+            );
+
+            String localizacionEvent = cursor.getString(
+                    cursor.getColumnIndexOrThrow("localizacionEvent")
+            );
+
+            String horaEvent = cursor.getString(
+                    cursor.getColumnIndexOrThrow("horaEvent")
+            );
+
+            partido = new Partido(
+                    nombreEvent,
+                    fechEvent,
+                    localizacionEvent,
+                    horaEvent
+            );
+        }
+
+        cursor.close();
+
+        return partido;
+    }
+
+    // Eliminar jugador por correo
+    public void eliminarJugador(String correo){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(
+                "jugadores",
+                "correo=?",
+                new String[]{correo}
+        );
+    }
 }

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- Título -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:paddingTop="45dp"
+        android:text="Detalle del Partido"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <!-- Nombre partido -->
+
+    <TextView
+        android:id="@+id/tvNombrePartido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FULLSQUAD vs Los Leones"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="15dp"/>
+
+    <!-- Fecha -->
+
+    <TextView
+        android:id="@+id/tvFecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha: 12/06/2026"
+        android:textSize="16sp"
+        android:layout_marginBottom="10dp"/>
+
+    <!-- Hora -->
+
+    <TextView
+        android:id="@+id/tvHora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hora: 11:00"
+        android:textSize="16sp"
+        android:layout_marginBottom="10dp"/>
+
+    <!-- Campo -->
+
+    <TextView
+        android:id="@+id/tvCampo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Campo: Vista Alegre"
+        android:textSize="16sp"
+        android:layout_marginBottom="30dp"/>
+
+    <!-- Botón confirmar -->
+
+    <Button
+        android:id="@+id/btnConfirmar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirmar asistencia"
+        android:backgroundTint="#4CAF50"
+        android:layout_marginBottom="10dp"/>
+
+    <!-- Botón rechazar -->
+
+    <Button
+        android:id="@+id/btnNoAsistir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#F44336"
+        android:text="No asistiré" />
+
+</LinearLayout>

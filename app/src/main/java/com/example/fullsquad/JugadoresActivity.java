@@ -35,7 +35,7 @@ public class JugadoresActivity extends AppCompatActivity {
 
         listaJugadores = dbHelper.obtenerJugadores();
 
-        adapter = new JugadorAdapter(listaJugadores);
+        adapter = new JugadorAdapter(listaJugadores, dbHelper);
 
         recyclerJugadores.setLayoutManager(new LinearLayoutManager(this));
         recyclerJugadores.setAdapter(adapter);
